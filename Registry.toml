@@ -5,6 +5,7 @@ description = "A Julia registry for OpenModelica tooling."
 
 [packages]
 0174eeea-c361-11e9-3d0d-a9ca8048aff6 = { name = "DAE", path = "D/DAE" }
+1bc4e7c2-c1e1-11e9-03fe-315bbef43fde = { name = "DoubleEnded", path = "D/DoubleEnded" }
 11f87224-cae7-4e99-a924-e50d12f62c59 = { name = "OMParser", path = "O/OMParser" }
 350d45b0-c210-11e9-3b9e-fdad65bb3d46 = { name = "SCode", path = "S/SCode" }
 3cc3926e-259e-5855-988e-4819684349c8 = { name = "OpenModelicaParser", path = "O/OpenModelicaParser" }
