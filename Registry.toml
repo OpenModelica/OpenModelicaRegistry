@@ -12,6 +12,7 @@ description = "A Julia registry for OpenModelica tooling."
 53cd29f2-c28d-11e9-1567-bd5452eeb1a0 = { name = "ArrayUtil", path = "A/ArrayUtil" }
 9400bd5f-7561-42f6-8760-03756753da50 = { name = "OMBackend", path = "O/OMBackend" }
 9d7f2a79-07b5-5542-8b19-c0100dda6b06 = { name = "MetaModelica", path = "M/MetaModelica" }
+ada38df0-e20e-11ed-02f3-2b4b19c1ec8a = { name = "OMRuntimeExternalC", path = "O/OMRuntimeExternalC" }
 b10394b5-f439-4073-a0c5-e09cb00cf46c = { name = "OMFrontend", path = "O/OMFrontend" }
 b2a72b7e-c1ef-11e9-3a87-6ddc5900c366 = { name = "ListUtil", path = "L/ListUtil" }
 ce2f92e2-a952-11e9-0543-8b443f216f1d = { name = "Absyn", path = "A/Absyn" }
