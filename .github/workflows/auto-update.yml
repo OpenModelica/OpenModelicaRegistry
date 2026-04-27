@@ -1,0 +1,46 @@
+name: Auto-update registry
+
+on:
+  schedule:
+    # Daily at 23:00 UTC. GitHub schedules are best-effort; jobs may run
+    # several minutes late or be skipped under platform load.
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout registry
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git identity
+        run: |
+          git config user.name  "OpenModelica Registry Bot"
+          git config user.email "actions@users.noreply.github.com"
+
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.12'
+
+      - name: Run auto-register
+        run: julia --color=yes .ci/auto_register.jl
+
+      - name: Push registry commits
+        run: |
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/master)" ]; then
+            git push origin HEAD:master
+          else
+            echo "No new versions; nothing to push."
+          fi

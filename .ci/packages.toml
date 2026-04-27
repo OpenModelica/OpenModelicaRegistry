@@ -1,0 +1,25 @@
+# Packages tracked by the daily auto-update workflow.
+#
+# Only list packages whose Project.toml has NO [sources] block. Packages with
+# in-tree path sources require a separate strip-and-register flow and must not
+# be added here.
+#
+# Each entry needs:
+#   name   = the package name as recorded in the registry
+#   repo   = HTTPS git URL to clone
+#   branch = branch to track (default master)
+
+[[package]]
+name   = "ImmutableList"
+repo   = "https://github.com/OpenModelica/ImmutableList.jl.git"
+branch = "master"
+
+[[package]]
+name   = "OMParser"
+repo   = "https://github.com/OpenModelica/OMParser.jl.git"
+branch = "master"
+
+[[package]]
+name   = "OMRuntimeExternalC"
+repo   = "https://github.com/OpenModelica/OMRuntimeExternalC.jl.git"
+branch = "master"
