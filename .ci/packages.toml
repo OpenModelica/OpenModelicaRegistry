@@ -23,3 +23,8 @@ branch = "master"
 name   = "OMRuntimeExternalC"
 repo   = "https://github.com/OpenModelica/OMRuntimeExternalC.jl.git"
 branch = "master"
+
+[[package]]
+name   = "MetaModelica"
+repo   = "https://github.com/OpenModelica/MetaModelica.jl.git"
+branch = "master"
