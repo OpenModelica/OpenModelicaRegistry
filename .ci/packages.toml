@@ -28,3 +28,8 @@ branch = "master"
 name   = "MetaModelica"
 repo   = "https://github.com/OpenModelica/MetaModelica.jl.git"
 branch = "master"
+
+[[package]]
+name   = "SCode"
+repo   = "https://github.com/OpenModelica/SCode.jl.git"
+branch = "master"
