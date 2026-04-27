@@ -33,3 +33,8 @@ branch = "master"
 name   = "SCode"
 repo   = "https://github.com/OpenModelica/SCode.jl.git"
 branch = "master"
+
+[[package]]
+name   = "DAE"
+repo   = "https://github.com/OpenModelica/DAE.jl.git"
+branch = "master"

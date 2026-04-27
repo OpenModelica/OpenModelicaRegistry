@@ -1,3 +1,3 @@
 name = "DAE"
 uuid = "0174eeea-c361-11e9-3d0d-a9ca8048aff6"
-repo = "https://github.com/JKRT/DAE.jl.git"
+repo = "https://github.com/OpenModelica/DAE.jl.git"
