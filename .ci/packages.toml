@@ -38,3 +38,8 @@ branch = "master"
 name   = "DAE"
 repo   = "https://github.com/OpenModelica/DAE.jl.git"
 branch = "master"
+
+[[package]]
+name   = "DoubleEnded"
+repo   = "https://github.com/OpenModelica/DoubleEnded.jl.git"
+branch = "master"
