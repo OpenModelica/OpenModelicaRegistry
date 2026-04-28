@@ -6,7 +6,7 @@ use LocalRegistry.jl
 https://github.com/GunnarFarneback/LocalRegistry.jl
 
 ```
-(@v1.6) pkg> registry add https://github.com/JKRT/OpenModelicaRegistry.git
+(@v1.6) pkg> registry add https://github.com/OpenModelica/OpenModelicaRegistry.git
 ```
 
 ```
