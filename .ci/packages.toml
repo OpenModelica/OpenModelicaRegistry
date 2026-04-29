@@ -43,3 +43,8 @@ branch = "master"
 name   = "DoubleEnded"
 repo   = "https://github.com/OpenModelica/DoubleEnded.jl.git"
 branch = "master"
+
+[[package]]
+name   = "ArrayUtil"
+repo   = "https://github.com/OpenModelica/ArrayUtil.jl.git"
+branch = "master"
