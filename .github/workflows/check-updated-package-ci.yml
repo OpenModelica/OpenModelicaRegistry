@@ -1,0 +1,103 @@
+name: Report CI status of updated packages
+
+# Informational only. For every package directory touched by a pull request,
+# read its repo URL and report the latest upstream CI result in the job summary.
+# This never fails the check and is not a merge gate.
+
+on:
+  pull_request:
+    paths:
+      - '*/*/Package.toml'
+      - '*/*/Versions.toml'
+
+permissions:
+  contents: read
+
+jobs:
+  report-ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout registry
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Report upstream CI status
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -uo pipefail
+
+          # Package directory = first two path components under a shelf letter,
+          # e.g. O/OMBackend.
+          mapfile -t pkg_dirs < <(
+            git diff --name-only "$BASE_SHA" "$HEAD_SHA" \
+              | grep -E '^[A-Za-z]/[^/]+/' \
+              | sed -E 's#^([A-Za-z]/[^/]+)/.*#\1#' \
+              | sort -u
+          )
+
+          {
+            echo "## CI status of updated packages"
+            echo
+            echo "Informational only. A non-green status does not block this update."
+            echo
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "${#pkg_dirs[@]}" -eq 0 ]; then
+            echo "_No package directories changed in this PR._" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          {
+            echo "| Package | Repository | Branch | Latest CI |"
+            echo "| --- | --- | --- | --- |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          for dir in "${pkg_dirs[@]}"; do
+            toml="$dir/Package.toml"
+            [ -f "$toml" ] || continue
+            name=$(sed -nE 's/^name *= *"([^"]+)".*/\1/p' "$toml" | head -1)
+            repo=$(sed -nE 's/^repo *= *"([^"]+)".*/\1/p' "$toml" | head -1)
+
+            if [ -z "$repo" ]; then
+              echo "| \`$name\` | _no repo field_ | - | :grey_question: unknown |" >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+
+            slug=$(echo "$repo" | sed -E 's#^https?://github.com/##; s#\.git$##')
+
+            branch=$(gh api "repos/$slug" --jq '.default_branch' 2>/dev/null || echo "")
+            [ -z "$branch" ] && branch="master"
+
+            run=$(gh api "repos/$slug/actions/runs?branch=$branch&per_page=1" \
+                  --jq '.workflow_runs[0] | "\(.conclusion // .status)\t\(.html_url)"' 2>/dev/null || echo "")
+            conclusion=${run%%$'\t'*}
+            url=${run#*$'\t'}
+
+            if [ -z "$conclusion" ] || [ "$conclusion" = "null" ]; then
+              # No Actions runs found; fall back to the combined commit status.
+              conclusion=$(gh api "repos/$slug/commits/$branch/status" --jq '.state' 2>/dev/null || echo "")
+              url="https://github.com/$slug"
+            fi
+
+            case "$conclusion" in
+              success) badge=":white_check_mark: success" ;;
+              failure|cancelled|timed_out|action_required|startup_failure) badge=":x: $conclusion" ;;
+              neutral|skipped) badge=":heavy_minus_sign: $conclusion" ;;
+              in_progress|queued|requested|waiting|pending) badge=":hourglass: $conclusion" ;;
+              ""|none) badge=":warning: no CI found" ;;
+              *) badge=":warning: $conclusion" ;;
+            esac
+
+            if [ -n "$url" ] && [ "$url" != "null" ]; then
+              badge="[$badge]($url)"
+            fi
+
+            echo "| \`$name\` | $slug | $branch | $badge |" >> "$GITHUB_STEP_SUMMARY"
+          done
+
+          echo "Reported CI status for ${#pkg_dirs[@]} package(s)."
