@@ -1,4 +1,4 @@
-[0]
+[0-1]
 Absyn = "ce2f92e2-a952-11e9-0543-8b443f216f1d"
 ArrayUtil = "53cd29f2-c28d-11e9-1567-bd5452eeb1a0"
 DAE = "0174eeea-c361-11e9-3d0d-a9ca8048aff6"
@@ -11,3 +11,11 @@ OMParser = "11f87224-cae7-4e99-a924-e50d12f62c59"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 SCode = "350d45b0-c210-11e9-3b9e-fdad65bb3d46"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[1]
+Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+ManualMemory = "d125e4d3-2237-4719-b19c-fa641b8a4667"
+OMRuntimeExternalC = "ada38df0-e20e-11ed-02f3-2b4b19c1ec8a"
+PrecompileTools = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
+Serialization = "9e88b42a-f829-5b0c-bbe9-9e923198166b"

@@ -4,10 +4,14 @@ git-tree-sha1 = "7f0e2c697703846662b56d991847a086f3710b15"
 ["0.2.0"]
 git-tree-sha1 = "d13d8d8f95da363be97534503c7ddb301f4b3ba8"
 
-["0.3.0"] #The version with structural modes
+["0.3.0"]
 git-tree-sha1 = "db21f2785bf36653a198827431bcb1bdd010bdbc"
-#First public alpha
+
 ["0.4.0"]
 git-tree-sha1 = "045a4df8c32d9d3761715c6ca04e2771b237b7a7"
-["0.4.1"] #Fixes to overconstrained connectors
+
+["0.4.1"]
 git-tree-sha1 = "ae479101c55ba47d3b35ee20c7ff722621962d35"
+
+["1.0.1"]
+git-tree-sha1 = "beb57701ae0c82ce47f3a6db178d11a75f4a4492"
