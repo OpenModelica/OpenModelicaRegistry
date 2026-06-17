@@ -1,0 +1,67 @@
+name: Package installability
+
+# Installs each core OpenModelica package FROM THE REGISTRY (no Pkg.develop) on a
+# clean depot and precompiles it on Julia 1.12. This reproduces what a fresh user
+# or demo machine does, so a stale/broken registered version fails CI instead of
+# a demo. On a pull_request the checked-out registry includes the proposed change,
+# so new registrations are validated before merge.
+#
+# One package per matrix job: each resolves its own dependencies from the registry,
+# so jobs are independent and run in parallel (GitHub Free allows up to 20).
+
+on:
+  pull_request:
+    paths:
+      - '*/*/Versions.toml'
+      - '*/*/Package.toml'
+      - '*/*/Deps.toml'
+      - '*/*/Compat.toml'
+  schedule:
+    - cron: '0 4 * * *'   # nightly: catches registry/upstream drift between PRs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    name: ${{ matrix.package }} (Julia ${{ matrix.version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ['1.12']
+        package:
+          - ImmutableList
+          - ArrayUtil
+          - ListUtil
+          - Absyn
+          - SCode
+          - DAE
+          - OMParser
+          - OMRuntimeExternalC
+          - MetaModelica
+          - OMFrontend
+          - OMBackend
+    steps:
+      - name: Checkout registry (this PR's state)
+        uses: actions/checkout@v4
+
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: ${{ matrix.version }}
+
+      - name: Add ${{ matrix.package }} from the registry and precompile
+        shell: bash
+        env:
+          REG_PATH: ${{ github.workspace }}
+          PKG: ${{ matrix.package }}
+        run: |
+          julia --color=yes -e '
+            import Pkg
+            Pkg.Registry.add("General")
+            Pkg.Registry.add(Pkg.RegistrySpec(url = "file://" * ENV["REG_PATH"]))
+            Pkg.activate(mktempdir())
+            Pkg.add(ENV["PKG"])
+            Pkg.precompile()'

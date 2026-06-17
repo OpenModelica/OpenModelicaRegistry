@@ -48,3 +48,8 @@ branch = "master"
 name   = "ArrayUtil"
 repo   = "https://github.com/OpenModelica/ArrayUtil.jl.git"
 branch = "master"
+
+[[package]]
+name   = "OMFrontend"
+repo   = "https://github.com/OpenModelica/OMFrontend.jl.git"
+branch = "master"
