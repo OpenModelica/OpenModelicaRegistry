@@ -1,6 +1,6 @@
 name = "OpenModelica"
 uuid = "4fa5c7c7-00bc-413e-90a6-2009f2bf81d5"
-repo = "https://github.com/JKRT/OpenModelicaRegistry.git"
+repo = "https://github.com/OpenModelica/OpenModelicaRegistry.git"
 description = "A Julia registry for OpenModelica tooling."
 
 [packages]
