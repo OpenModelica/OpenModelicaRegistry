@@ -3,7 +3,6 @@ julia = "1.7.0-1"
 
 ["0.5-0"]
 ADTypes = "1"
-MetaModelica = "0.4.2-0.4"
 ModelingToolkit = "11.21.0-11"
 NonlinearSolve = "4"
 PrecompileTools = "1"
@@ -21,6 +20,9 @@ OMRuntimeExternalC = "0.3.3-0.3"
 ["0.5-0.6"]
 DAE = "1.2.0-1"
 ImmutableList = "0.4.2-0.4"
+
+["0.5-0.8.4"]
+MetaModelica = "0.4.2-0.4"
 
 ["0.5.3"]
 OMFrontend = "1.5.0-1"
@@ -50,5 +52,11 @@ OMRuntimeExternalC = "0.3.6-0.3"
 ["0.8-0.8.3"]
 OMFrontend = "1.7.5-1"
 
-["0.8.4-0"]
+["0.8.4"]
 OMFrontend = "1.8.3-1"
+
+["0.8.5-0"]
+DiffEqBase = "7.21.2-7"
+MetaModelica = "0.4.2-0.5"
+OMFrontend = "1.8.4-1"
+SciMLBase = "3.56.0-3"
