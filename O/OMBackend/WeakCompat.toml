@@ -1,2 +1,7 @@
 ["0.8.4-0"]
 OMCompiler = "0.1"
+
+["0.9-0"]
+MetaModelica = "0.4.2-0.5"
+OMFrontend = "2"
+OMParser = "1"

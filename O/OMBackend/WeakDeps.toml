@@ -1,2 +1,7 @@
 ["0.8.4-0"]
 OMCompiler = "5eee2e4c-d6e4-4c2a-a3d5-a5d6acef407f"
+
+["0.9-0"]
+MetaModelica = "9d7f2a79-07b5-5542-8b19-c0100dda6b06"
+OMFrontend = "b10394b5-f439-4073-a0c5-e09cb00cf46c"
+OMParser = "11f87224-cae7-4e99-a924-e50d12f62c59"
