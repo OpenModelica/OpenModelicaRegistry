@@ -1,3 +1,7 @@
+["0.10-0"]
+JuliaFormatter = "2"
+Plots = "1"
+
 ["0.8.4-0"]
 OMCompiler = "0.1"
 
