@@ -19,6 +19,12 @@ name   = "OMParser"
 repo   = "https://github.com/OpenModelica/OMParser.jl.git"
 branch = "master"
 
+# OMParser renamed (new uuid, OpenModelica/OpenModelicaParser.jl, 2026-11-20); OMParser stays for its versions.
+[[package]]
+name   = "OpenModelicaParser"
+repo   = "https://github.com/OpenModelica/OpenModelicaParser.jl.git"
+branch = "master"
+
 [[package]]
 name   = "OMRuntimeExternalC"
 repo   = "https://github.com/OpenModelica/OMRuntimeExternalC.jl.git"
