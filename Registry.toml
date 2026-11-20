@@ -5,11 +5,12 @@ description = "A Julia registry for OpenModelica tooling."
 
 [packages]
 0174eeea-c361-11e9-3d0d-a9ca8048aff6 = { name = "DAE", path = "D/DAE" }
-1bc4e7c2-c1e1-11e9-03fe-315bbef43fde = { name = "DoubleEnded", path = "D/DoubleEnded" }
 11f87224-cae7-4e99-a924-e50d12f62c59 = { name = "OMParser", path = "O/OMParser" }
+1bc4e7c2-c1e1-11e9-03fe-315bbef43fde = { name = "DoubleEnded", path = "D/DoubleEnded" }
 350d45b0-c210-11e9-3b9e-fdad65bb3d46 = { name = "SCode", path = "S/SCode" }
 4a558cac-c1ed-11e9-20da-3584bcd8709a = { name = "ImmutableList", path = "I/ImmutableList" }
 53cd29f2-c28d-11e9-1567-bd5452eeb1a0 = { name = "ArrayUtil", path = "A/ArrayUtil" }
+93103b3a-abeb-4d26-8089-9ec101bd0c3c = { name = "OpenModelicaParser", path = "O/OpenModelicaParser" }
 9400bd5f-7561-42f6-8760-03756753da50 = { name = "OMBackend", path = "O/OMBackend" }
 9d7f2a79-07b5-5542-8b19-c0100dda6b06 = { name = "MetaModelica", path = "M/MetaModelica" }
 ada38df0-e20e-11ed-02f3-2b4b19c1ec8a = { name = "OMRuntimeExternalC", path = "O/OMRuntimeExternalC" }
