@@ -1,7 +1,7 @@
 name: Package installability
 
 # Installs each core OpenModelica package FROM THE REGISTRY (no Pkg.develop) on a
-# clean depot and precompiles it on Julia 1.12. This reproduces what a fresh user
+# clean depot and precompiles it on Julia 1.13. This reproduces what a fresh user
 # or demo machine does, so a stale/broken registered version fails CI instead of
 # a demo. On a pull_request the checked-out registry includes the proposed change,
 # so new registrations are validated before merge.
@@ -16,6 +16,7 @@ on:
       - '*/*/Package.toml'
       - '*/*/Deps.toml'
       - '*/*/Compat.toml'
+      - '.github/workflows/installability.yml'
   schedule:
     - cron: '0 4 * * *'   # nightly: catches registry/upstream drift between PRs
   workflow_dispatch:
@@ -40,6 +41,7 @@ jobs:
           - SCode
           - DAE
           - OMParser
+          - OpenModelicaParser
           - OMRuntimeExternalC
           - MetaModelica
           - OMFrontend
@@ -47,6 +49,12 @@ jobs:
     steps:
       - name: Checkout registry (this PR's state)
         uses: actions/checkout@v4
+
+      # A pull request is checked out as a detached merge commit. Pkg clones the
+      # registry from file://, which takes the branches only: without one the
+      # commit is not found (GitError ENOTFOUND).
+      - name: Branch at the checked-out commit
+        run: git switch -c registry-under-test
 
       - uses: julia-actions/setup-julia@v2
         with:
