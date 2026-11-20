@@ -39,7 +39,7 @@ MetaModelica = "0.4.3-0.4"
 ["1.8.4-1"]
 ImmutableList = "0.4.2-0.5"
 
-["1.8.4-2"]
+["1.8.4-2.2.4"]
 MetaModelica = "0.4.3-0.5"
 
 [2]
@@ -55,3 +55,6 @@ ExportAll = "0.1"
 JSON = "1"
 OMRuntimeExternalC = "1"
 PrecompileTools = "1"
+
+["2.2.5-2"]
+MetaModelica = ["0.5", "1"]
