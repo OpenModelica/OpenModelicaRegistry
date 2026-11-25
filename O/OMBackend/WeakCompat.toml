@@ -17,4 +17,9 @@ OMParser = "1"
 
 ["1.1-1"]
 MetaModelica = "2"
+
+["1.1-1.2.2"]
 OMFrontend = "3"
+
+["1.2.4-1"]
+OMFrontend = "3-4"
